@@ -105,17 +105,10 @@ button.delete {
 footer {
   text-align: center;
   padding: 1rem;
-  background: blue;
+  background: darkblue;
   color: white;
   margin-top: 30px;
 }
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .stats {
-    flex-direction: column;
-    gap: 5px;
-  }
 
   main {
     margin: 10px;
