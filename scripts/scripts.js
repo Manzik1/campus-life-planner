@@ -230,3 +230,7 @@ function showNotification(message, isError = false) {
     note.className = 'hidden';
   }, 2500);
 }
+alert("Invalid title! Use only letters, numbers, and spaces (3–50 chars).");
+showNotification("Invalid title! Use only letters, numbers, and spaces (3–50 chars).", true);
+showNotification("Task saved successfully!");
+
