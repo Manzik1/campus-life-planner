@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background: blue;
+  background: darkblue;
   color: white;
   text-align: center;
   padding: 1rem;
@@ -23,7 +23,7 @@ main {
 }
 
 h2 {
-  color: blue;
+  color: darkblue;
   margin-top: 0;
 }
 
@@ -60,7 +60,7 @@ input, button {
 }
 
 button {
-  background: blue;
+  background: darkblue;
   color: white;
   border: none;
   cursor: pointer;
@@ -68,7 +68,7 @@ button {
 }
 
 button:hover {
-  background: blue;
+  background: darkblue;
 }
 
 /* Table Section */
@@ -193,7 +193,7 @@ button.danger:hover {
 }
 
 button#exportJSON, button#importJSON {
-  background: blue;
+  background: darkblue;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -203,7 +203,7 @@ button#exportJSON, button#importJSON {
 }
 
 button#exportJSON:hover, button#importJSON:hover {
-  background: blue;
+  background: darkblue;
 }
 /* Notification Popup */
 #notification {
