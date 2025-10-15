@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Life Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div id="notification" class="hidden"></div>
+
+  <header>
+    <h1>Campus Life Planner</h1>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Add / Edit Task</h2>
+      <form id="taskForm">
+        <input type="hidden" id="taskId">
+        <input type="text" id="title" placeholder="Task Title" required>
+        <input type="date" id="dueDate" required>
+        <input type="number" id="duration" placeholder="Duration (minutes)" required>
+        <input type="text" id="tag" placeholder="Tag (e.g., Study, Meeting)" required>
+        <button type="submit">Save Task</button>
+      </form>
+    </section>
+
+    <section class="table-section">
+      <h2>Your Tasks</h2>
+
+      <!-- Search and Clear Buttons -->
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search tasks...">
+        <button id="clearAll" class="danger">Clear All Tasks</button>
+      </div>
+    <div class="controls">
+     <input type="text" id="searchInput" placeholder="Search tasks...">
+
+    <div class="buttons">
+    <button id="exportJSON">Export JSON</button>
+    <button id="importJSON">Import JSON</button>
+    <button id="clearAll" class="danger">Clear All Tasks</button>
+     </div>
+     </div>
+
+      <!-- Add a hidden file input for importing -->
+      <input type="file" id="fileInput" accept=".json" style="display:none;">
+
+
+      <table id="taskTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Duration</th>
+            <th>Tag</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <!-- Stats Dashboard -->
+      <div class="stats">
+        <p>Total Tasks: <span id="totalTasks">0</span></p>
+        <p>Total Duration: <span id="totalDuration">0</span> minutes</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; k.manzi@alustudent.com</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
