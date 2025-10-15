@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background: #3f51b5;
+  background: blue;
   color: white;
   text-align: center;
   padding: 1rem;
@@ -19,11 +19,11 @@ main {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px black;
 }
 
 h2 {
-  color: #3f51b5;
+  color: blue;
   margin-top: 0;
 }
 
@@ -42,7 +42,7 @@ h2 {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid gainsboro;
 }
 
 /* Form Section */
@@ -56,11 +56,11 @@ input, button {
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid gainsboro;
 }
 
 button {
-  background: #3f51b5;
+  background: blue;
   color: white;
   border: none;
   cursor: pointer;
@@ -68,7 +68,7 @@ button {
 }
 
 button:hover {
-  background: #303f9f;
+  background: blue;
 }
 
 /* Table Section */
@@ -79,12 +79,12 @@ table {
 
 th, td {
   padding: 8px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid gainsboro;
   text-align: left;
 }
 
 th {
-  background: #f0f0f0;
+  background: white;
 }
 
 .actions button {
@@ -94,18 +94,18 @@ th {
 }
 
 button.edit {
-  background: #4caf50;
+  background: lightgreen;
 }
 
 button.delete {
-  background: #e91e63;
+  background: red;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 1rem;
-  background: #3f51b5;
+  background: blue;
   color: white;
   margin-top: 30px;
 }
@@ -159,12 +159,12 @@ footer {
 #searchInput {
   width: 60%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid gainsboro;
   border-radius: 5px;
 }
 
 button.danger {
-  background: #e53935;
+  background: red;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -174,14 +174,14 @@ button.danger {
 }
 
 button.danger:hover {
-  background: #b71c1c;
+  background: red;
 }
 
 /* Stats Dashboard */
 .stats {
   margin-top: 15px;
   padding: 10px;
-  background: #f4f4f4;
+  background: white;
   border-radius: 8px;
 }
 .stats p {
@@ -193,7 +193,7 @@ button.danger:hover {
 }
 
 button#exportJSON, button#importJSON {
-  background: #0288d1;
+  background: blue;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -203,7 +203,7 @@ button#exportJSON, button#importJSON {
 }
 
 button#exportJSON:hover, button#importJSON:hover {
-  background: #01579b;
+  background: blue;
 }
 /* Notification Popup */
 #notification {
@@ -211,8 +211,8 @@ button#exportJSON:hover, button#importJSON:hover {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: #4caf50;
-  color: white;
+  background: green;
+  color: black;
   padding: 10px 20px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -228,5 +228,5 @@ button#exportJSON:hover, button#importJSON:hover {
 }
 
 #notification.error {
-  background: #f44336;
+  background: red;
 }
