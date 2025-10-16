@@ -1,45 +1,39 @@
-const form = document.getElementById('taskForm');
-const tableBody = document.querySelector('#taskTable tbody');
-const totalTasks = document.getElementById('totalTasks');
-const totalDuration = document.getElementById('totalDuration');
-const searchInput = document.getElementById('searchInput');
+// Get all needed elements
+const form = document.getElementById("taskForm");
+const tableBody = document.querySelector("#taskTable tbody");
+const totalTasks = document.getElementById("totalTasks");
+const totalDuration = document.getElementById("totalDuration");
+const searchInput = document.getElementById("searchInput");
+const clearAllBtn = document.getElementById("clearAll");
+const exportBtn = document.getElementById("exportJSON");
+const importBtn = document.getElementById("importJSON");
+const fileInput = document.getElementById("fileInput");
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+// Load tasks from localStorage or start empty
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-// ===== Regex Patterns =====
-// 1. Description/title: no leading/trailing spaces, no double spaces
-const titleRegex = /^\S(?:.*\S)?$/;
+// ------------------------------
+// Helper Functions
+// ------------------------------
 
-// 2. Numeric field (duration) — only positive numbers (optional decimals)
-const durationRegex = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
-
-// 3. Date: YYYY-MM-DD format
-const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
-
-// 4. Category/tag: letters, spaces, or hyphens
-const tagRegex = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
-
-// 5. Advanced regex (back-reference): detect duplicate words in title
-const duplicateWordRegex = /\b(\w+)\s+\1\b/i;
-
-
-// Save tasks to localStorage
+// Save all tasks to local storage
 function saveTasks() {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Calculate and update dashboard stats
+// Update the total tasks and total duration numbers
 function updateStats() {
   totalTasks.textContent = tasks.length;
-  const totalTime = tasks.reduce((sum, task) => sum + Number(task.duration), 0);
+  const totalTime = tasks.reduce((sum, t) => sum + Number(t.duration), 0);
   totalDuration.textContent = totalTime;
 }
 
-// Display tasks
-function renderTasks(filteredTasks = tasks) {
-  tableBody.innerHTML = '';
-  filteredTasks.forEach(task => {
-    const row = document.createElement('tr');
+// Show tasks in the table
+function renderTasks(filtered = tasks) {
+  tableBody.innerHTML = "";
+
+  filtered.forEach((task) => {
+    const row = document.createElement("tr");
     row.innerHTML = `
       <td>${task.title}</td>
       <td>${task.dueDate}</td>
@@ -52,73 +46,67 @@ function renderTasks(filteredTasks = tasks) {
     `;
     tableBody.appendChild(row);
   });
+
   updateStats();
 }
 
-// Add new task
+// Save a new task to the list
 function addTask(task) {
   tasks.push(task);
   saveTasks();
   renderTasks();
 }
 
-// Edit task
+// ------------------------------
+// Edit & Delete Tasks
+// ------------------------------
+
+// Fill the form with a task’s info to edit it
 function editTask(id) {
-  const task = tasks.find(t => t.id === id);
-  document.getElementById('taskId').value = task.id;
-  document.getElementById('title').value = task.title;
-  document.getElementById('dueDate').value = task.dueDate;
-  document.getElementById('duration').value = task.duration;
-  document.getElementById('tag').value = task.tag;
+  const task = tasks.find((t) => t.id === id);
+  if (!task) return;
+  document.getElementById("taskId").value = task.id;
+  document.getElementById("title").value = task.title;
+  document.getElementById("dueDate").value = task.dueDate;
+  document.getElementById("duration").value = task.duration;
+  document.getElementById("tag").value = task.tag;
 }
 
-// Delete task
+// Remove a task from the list
 function deleteTask(id) {
-  if (confirm('Delete this task?')) {
-    tasks = tasks.filter(t => t.id !== id);
+  if (confirm("Delete this task?")) {
+    tasks = tasks.filter((t) => t.id !== id);
     saveTasks();
     renderTasks();
   }
 }
 
-// Handle form submission
-form.addEventListener('submit', e => {
+// ------------------------------
+// Form Submission (Add or Edit)
+// ------------------------------
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const id = document.getElementById('taskId').value;
-  const title = document.getElementById('title').value.trim();
-  const dueDate = document.getElementById('dueDate').value;
-  const duration = document.getElementById('duration').value.trim();
-  const tag = document.getElementById('tag').value.trim();
-//  Regex validation
-if (!titleRegex.test(title)) {
-  showNotification(" Title can't start/end with spaces or contain double spaces.", true);
-  return;
-}
+  const id = document.getElementById("taskId").value;
+  const title = document.getElementById("title").value.trim();
+  const dueDate = document.getElementById("dueDate").value;
+  const duration = document.getElementById("duration").value.trim();
+  const tag = document.getElementById("tag").value.trim();
 
-if (duplicateWordRegex.test(title)) {
-  showNotification(" Title has duplicate words (e.g., 'study study').", true);
-  return;
-}
+  // Simple input validation
+  if (!title || !dueDate || !duration || !tag) {
+    showNotification("Please fill out all fields", true);
+    return;
+  }
 
-if (!durationRegex.test(duration)) {
-  showNotification(" Duration must be a positive number (e.g., 45 or 60.5).", true);
-  return;
-}
-
-if (!dateRegex.test(dueDate)) {
-  showNotification(" Date must be in YYYY-MM-DD format.", true);
-  return;
-}
-
-if (!tagRegex.test(tag)) {
-  showNotification(" Tag must contain only letters, spaces, or hyphens.", true);
-  return;
-}
+  if (isNaN(duration) || duration <= 0) {
+    showNotification("Duration must be a positive number", true);
+    return;
+  }
 
   if (id) {
     // Update existing task
-    const task = tasks.find(t => t.id === id);
+    const task = tasks.find((t) => t.id === id);
     task.title = title;
     task.dueDate = dueDate;
     task.duration = duration;
@@ -133,101 +121,103 @@ if (!tagRegex.test(tag)) {
       duration,
       tag,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
     };
     addTask(newTask);
   }
 
   form.reset();
-  document.getElementById('taskId').value = '';
+  document.getElementById("taskId").value = "";
   saveTasks();
   renderTasks();
+  showNotification("Task saved!");
 });
 
-// Search functionality
-searchInput.addEventListener('input', () => {
+// ------------------------------
+// Search for Tasks
+// ------------------------------
+searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase();
-  const filtered = tasks.filter(t =>
-    t.title.toLowerCase().includes(query) ||
-    t.tag.toLowerCase().includes(query) ||
-    t.dueDate.includes(query)
+  const filtered = tasks.filter(
+    (t) =>
+      t.title.toLowerCase().includes(query) ||
+      t.tag.toLowerCase().includes(query) ||
+      t.dueDate.includes(query)
   );
   renderTasks(filtered);
 });
 
-// Initialize
-renderTasks();
-// Clear all tasks
-const clearAllBtn = document.getElementById('clearAll');
-clearAllBtn.addEventListener('click', () => {
-  if (confirm("Are you sure you want to delete ALL tasks? This cannot be undone.")) {
+// ------------------------------
+// Clear All Tasks
+// ------------------------------
+clearAllBtn.addEventListener("click", () => {
+  if (confirm("Delete ALL tasks? This cannot be undone.")) {
     tasks = [];
-    localStorage.removeItem('tasks');
+    localStorage.removeItem("tasks");
     renderTasks();
+    showNotification("All tasks cleared!");
   }
 });
-// ===== JSON EXPORT =====
-const exportBtn = document.getElementById('exportJSON');
-exportBtn.addEventListener('click', () => {
+
+// ------------------------------
+// Export to JSON File
+// ------------------------------
+exportBtn.addEventListener("click", () => {
   if (tasks.length === 0) {
-    alert("No tasks to export.");
+    showNotification("No tasks to export.", true);
     return;
   }
+
   const dataStr = JSON.stringify(tasks, null, 2);
   const blob = new Blob([dataStr], { type: "application/json" });
   const url = URL.createObjectURL(blob);
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = "campus_tasks_backup.json";
+  a.download = "alu_tasks_backup.json";
   a.click();
   URL.revokeObjectURL(url);
+
+  showNotification("Tasks exported!");
 });
 
-// ===== JSON IMPORT =====
-const importBtn = document.getElementById('importJSON');
-const fileInput = document.getElementById('fileInput');
+// ------------------------------
+// Import from JSON File
+// ------------------------------
+importBtn.addEventListener("click", () => fileInput.click());
 
-importBtn.addEventListener('click', () => fileInput.click());
-
-fileInput.addEventListener('change', event => {
+fileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
-  reader.onload = e => {
+  reader.onload = (e) => {
     try {
       const imported = JSON.parse(e.target.result);
-
-      //  Validate the imported data
       if (!Array.isArray(imported)) throw new Error("Invalid JSON format");
-
-      const valid = imported.every(t =>
-        t.id && t.title && t.dueDate && t.duration && t.tag
-      );
-
-      if (!valid) throw new Error("Some records are missing required fields.");
 
       if (confirm("Importing will replace your current tasks. Continue?")) {
         tasks = imported;
         saveTasks();
         renderTasks();
-        alert(" Tasks imported successfully!");
+        showNotification("Tasks imported!");
       }
     } catch (err) {
-      alert(" Failed to import JSON: " + err.message);
+      showNotification("Import failed: " + err.message, true);
     }
   };
   reader.readAsText(file);
 });
-// Show notification (success or error)
+
+// ------------------------------
+// Small Popup Notifications
+// ------------------------------
 function showNotification(message, isError = false) {
-  const note = document.getElementById('notification');
+  const note = document.getElementById("notification");
   note.textContent = message;
-  note.className = isError ? 'show error' : 'show';
+  note.className = isError ? "show error" : "show";
 
   setTimeout(() => {
-    note.className = 'hidden';
+    note.className = "hidden";
   }, 2500);
 }
-
+renderTasks();
