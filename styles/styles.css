@@ -1,92 +1,85 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 4px;
+  margin: 10px;
   padding: 1rem;
   background: black;
   color: white;
 }
 
+/* ===== HEADER ===== */
 header {
   background: darkblue;
   color: white;
   text-align: center;
   padding: 1rem;
+  border-radius: 6px;
 }
 
+/* ===== MAIN CONTAINER ===== */
 main {
   max-width: 800px;
   margin: 20px auto;
-  background: white;
+  background: black;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px black;
 }
 
+/* Section titles */
 h2 {
-  color: darkblue;
+  color: skyblue;
   margin-top: 0;
 }
 
-/* Dashboard Section */
-.dashboard {
-  margin-bottom: 20px;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-#searchInput {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid gainsboro;
-}
-
-/* Form Section */
+/* ===== FORM SECTION ===== */
 form {
   display: grid;
   gap: 10px;
   margin-bottom: 20px;
 }
 
+/* Inputs and Buttons */
 input, button {
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
-  border: 1px solid gainsboro;
+  border: 1px solid black;
+  color: black;
+}
+
+input {
+  background: white;
 }
 
 button {
   background: darkblue;
   color: white;
-  border: none;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 button:hover {
-  background: darkblue;
+  background: #003399;
 }
 
-/* Table Section */
+/* ===== TABLE SECTION ===== */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th, td {
   padding: 8px;
-  border-bottom: 1px solid gainsboro;
+  border-bottom: 1px solid black;
   text-align: left;
 }
 
 th {
-  background: white;
+  background: black;
 }
 
+/* Action Buttons (Edit/Delete) */
 .actions button {
   margin-left: 5px;
   padding: 6px 10px;
@@ -94,139 +87,85 @@ th {
 }
 
 button.edit {
-  background: lightgreen;
+  background: green; 
 }
 
 button.delete {
   background: red;
 }
 
-/* Footer */
+/* ===== CONTROL BUTTONS ===== */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button.danger {
+  background: red;
+}
+
+/* ===== STATS DASHBOARD ===== */
+.stats {
+  margin-top: 15px;
+  padding: 10px;
+  background: black;
+  border-radius: 8px;
+}
+
+.stats p {
+  margin: 5px 0;
+}
+
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 1rem;
   background: darkblue;
   color: white;
   margin-top: 30px;
+  border-radius: 6px;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  main {
-    margin: 10px;
-    padding: 15px;
-  }
-
-  main {
-    margin: 10px;
-    padding: 15px;
-  }
-
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-
-  tr {
-    margin-bottom: 10px;
-  }
-
-  td {
-    padding-left: 40%;
-    position: relative;
-  }
-
-  td::before {
-    position: absolute;
-    left: 10px;
-    width: 30%;
-    font-weight: bold;
-  }
-
-  td:nth-of-type(1)::before { content: "Title"; }
-  td:nth-of-type(2)::before { content: "Due Date"; }
-  td:nth-of-type(3)::before { content: "Duration"; }
-  td:nth-of-type(4)::before { content: "Tag"; }
-  td:nth-of-type(5)::before { content: "Actions"; }
-}
-/* Search and Control Buttons */
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 15px 0;
-}
-
-#searchInput {
-  width: 60%;
-  padding: 8px;
-  border: 1px solid gainsboro;
-  border-radius: 5px;
-}
-
-button.danger {
-  background: red;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button.danger:hover {
-  background: red;
-}
-
-/* Stats Dashboard */
-.stats {
-  margin-top: 15px;
-  padding: 10px;
-  background: white;
-  border-radius: 8px;
-}
-.stats p {
-  margin: 5px 0;
-}
-.buttons {
-  display: flex;
-  gap: 10px;
-}
-
-button#exportJSON, button#importJSON {
-  background: darkblue;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button#exportJSON:hover, button#importJSON:hover {
-  background: darkblue;
-}
-/* Notification Popup */
+/* ===== NOTIFICATION POPUP ===== */
 #notification {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
   background: green;
-  color: black;
+  color: white;
   padding: 10px 20px;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px black;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
   z-index: 1000;
 }
 
+/* When active */
 #notification.show {
   opacity: 1;
   pointer-events: auto;
 }
 
+/* Error state */
 #notification.error {
   background: red;
 }
