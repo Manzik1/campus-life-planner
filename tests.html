@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regex Validation Tests - ALU Life Planner</title>
-  <link rel="stylesheet" href="styles.css" />
+
   <style>
+    /* --- Page Style --- */
     body {
-      background: black;
-      color: purple;
+      background: #000;
+      color: #d0b0ff;
       font-family: Arial, sans-serif;
       padding: 30px;
       max-width: 800px;
@@ -16,15 +17,20 @@
     }
 
     h1 {
-      color: blue;
+      color: #4db8ff;
       text-align: center;
       margin-bottom: 20px;
     }
 
+    p {
+      text-align: center;
+    }
+
+    /* --- Test box style --- */
     .regex-test {
-      background: beige;
+      background: #1a1a1a;
       border-radius: 8px;
-      box-shadow: 0 2px 5px black;
+      box-shadow: 0 2px 5px #111;
       padding: 20px;
       margin-bottom: 20px;
     }
@@ -33,6 +39,7 @@
       display: block;
       margin-top: 10px;
       font-weight: bold;
+      color: #ffccff;
     }
 
     input {
@@ -40,47 +47,52 @@
       padding: 8px;
       margin-top: 5px;
       border-radius: 5px;
-      border: 1px solid gainsboro;
+      border: 1px solid #555;
+      background: #111;
+      color: #eee;
     }
 
     .result {
-      margin-top: 10px;
+      margin-top: 8px;
       font-weight: bold;
     }
 
-    .valid { color: green; }
-    .invalid { color: red; }
+    .valid { color: #00ff80; }
+    .invalid { color: #ff5555; }
 
     a.back {
       display: inline-block;
       margin-top: 15px;
-      color: blue;
+      color: #4db8ff;
       text-decoration: none;
       font-weight: bold;
     }
   </style>
 </head>
+
 <body>
-
   <h1>Regex Validation Test Page</h1>
-  <p>This page lets you test all the regex validations used in your <b>ALU Life Planner</b> web app.</p>
+  <p>Test all regex patterns used in your <b>ALU Life Planner</b> app.</p>
 
+  <!-- 1. Title validation -->
   <div class="regex-test">
     <h3>1️ Title / Description</h3>
-    <p><code>/^\S(?:.*\S)?$/</code> — no leading/trailing spaces</p>
+    <p><code>/^\S(?:.*\S)?$/</code> → No extra spaces at start or end</p>
     <label>Test Input:</label>
     <input type="text" id="testTitle" placeholder="e.g. Study session">
     <div id="resultTitle" class="result"></div>
   </div>
 
+  <!-- 2. Duration validation -->
   <div class="regex-test">
     <h3>2️ Duration (Numeric)</h3>
-    <p><code>/^(0|[1-9]\d*)(\.\d{1,2})?$/</code> — must be a positive number</p>
+    <p><code>/^(0|[1-9]\d*)(\.\d{1,2})?$/</code> → Must be a positive number</p>
     <label>Test Input:</label>
     <input type="text" id="testDuration" placeholder="e.g. 45 or 60.5">
     <div id="resultDuration" class="result"></div>
   </div>
 
+  <!-- 3. Date validation -->
   <div class="regex-test">
     <h3>3️ Date (YYYY-MM-DD)</h3>
     <p><code>/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/</code></p>
@@ -89,17 +101,19 @@
     <div id="resultDate" class="result"></div>
   </div>
 
+  <!-- 4. Tag validation -->
   <div class="regex-test">
     <h3>4️ Tag / Category</h3>
-    <p><code>/^[A-Za-z]+(?:[ -][A-Za-z]+)*$/</code> — letters, spaces, hyphens only</p>
+    <p><code>/^[A-Za-z]+(?:[ -][A-Za-z]+)*$/</code> → Letters, spaces, or hyphens only</p>
     <label>Test Input:</label>
     <input type="text" id="testTag" placeholder="e.g. Group Project">
     <div id="resultTag" class="result"></div>
   </div>
 
+  <!-- 5. Duplicate word test -->
   <div class="regex-test">
-    <h3>5 Advanced (Duplicate Words)</h3>
-    <p><code>/\b(\w+)\s+\1\b/i</code> — detects repeated words like "study study"</p>
+    <h3>5️ Duplicate Words</h3>
+    <p><code>/\b(\w+)\s+\1\b/i</code> → Finds repeats like “study study”</p>
     <label>Test Input:</label>
     <input type="text" id="testDuplicate" placeholder="e.g. study study group">
     <div id="resultDuplicate" class="result"></div>
@@ -108,33 +122,33 @@
   <a href="index.html" class="back">← Back to Main App</a>
 
   <script>
-    // Define regex patterns
+    // --- All regex patterns ---
     const titleRegex = /^\S(?:.*\S)?$/;
     const durationRegex = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
     const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
     const tagRegex = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
     const duplicateWordRegex = /\b(\w+)\s+\1\b/i;
 
-    // Validation function
+    // --- Function to test user input ---
     function testInput(inputId, regex, resultId, reverse = false) {
       document.getElementById(inputId).addEventListener("input", e => {
         const value = e.target.value;
         const result = document.getElementById(resultId);
 
         const match = regex.test(value);
-        const valid = reverse ? !match : match;
+        const valid = reverse ? !match : match; // Reverse only for duplicate check
 
-        result.textContent = valid ? " Valid" :  Invalid";
+        result.textContent = valid ? "Valid" : "Invalid";
         result.className = "result " + (valid ? "valid" : "invalid");
       });
     }
 
-    // Run all tests
+    // --- Connect all test fields ---
     testInput("testTitle", titleRegex, "resultTitle");
     testInput("testDuration", durationRegex, "resultDuration");
     testInput("testDate", dateRegex, "resultDate");
     testInput("testTag", tagRegex, "resultTag");
-    testInput("testDuplicate", duplicateWordRegex, "resultDuplicate", true); // reverse logic
+    testInput("testDuplicate", duplicateWordRegex, "resultDuplicate", true); // reverse = true
   </script>
 </body>
 </html>
