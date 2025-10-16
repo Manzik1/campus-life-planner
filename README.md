@@ -37,3 +37,5 @@ A simple web app to help students organize their daily tasks, track time, and ma
 ---
 
 **© 2026 ALU Life Planner**
+demo video link
+https://youtu.be/G_40jF9IsZw
