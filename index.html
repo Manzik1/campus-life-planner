@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ALU Life Planner</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
- <div id="notification" class="hidden"></div>
+  <!-- Small popup for success/error notifications -->
+  <div id="notification" class="hidden"></div>
 
+  <!-- Page Header -->
   <header>
     <h1>ALU Life Planner</h1>
   </header>
 
   <main>
+    <!-- ========== ADD / EDIT TASK FORM ========== -->
     <section class="form-section">
       <h2>Add / Edit Task</h2>
       <form id="taskForm">
-        <input type="hidden" id="taskId">
-        <input type="text" id="title" placeholder="Task Title" required>
-        <input type="date" id="dueDate" required>
-        <input type="number" id="duration" placeholder="Duration (minutes)" required>
-        <input type="text" id="tag" placeholder="Tag (e.g., Study, Meeting)" required>
+        <!-- Hidden field for editing existing tasks -->
+        <input type="hidden" id="taskId" />
+
+        <input type="text" id="title" placeholder="Task Title" required />
+        <input type="date" id="dueDate" required />
+        <input type="number" id="duration" placeholder="Duration (minutes)" required />
+        <input type="text" id="tag" placeholder="Tag (e.g., Study, Meeting)" required />
         <button type="submit">Save Task</button>
       </form>
     </section>
 
+    <!-- ========== TASK LIST + CONTROLS ========== -->
     <section class="table-section">
       <h2>Your Tasks</h2>
 
-      <!-- Search and Clear Buttons -->
+      <!-- Search and control buttons -->
       <div class="controls">
-        <input type="text" id="searchInput" placeholder="Search tasks...">
-        <button id="clearAll" class="danger">Clear All Tasks</button>
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+        <div class="buttons">
+          <button id="exportJSON">Export JSON</button>
+          <button id="importJSON">Import JSON</button>
+          <button id="clearAll" class="danger">Clear All Tasks</button>
+        </div>
       </div>
-    <div class="controls">
-     <input type="text" id="searchInput" placeholder="Search tasks...">
 
-    <div class="buttons">
-    <button id="exportJSON">Export JSON</button>
-    <button id="importJSON">Import JSON</button>
-    <button id="clearAll" class="danger">Clear All Tasks</button>
-     </div>
-     </div>
+      <!-- Hidden file input for importing JSON -->
+      <input type="file" id="fileInput" accept=".json" style="display: none" />
 
-      <!-- Add a hidden file input for importing -->
-      <input type="file" id="fileInput" accept=".json" style="display:none;">
-
-
+      <!-- Tasks table -->
       <table id="taskTable">
         <thead>
           <tr>
@@ -61,7 +62,7 @@
         <tbody></tbody>
       </table>
 
-      <!-- Stats Dashboard -->
+      <!-- Stats summary -->
       <div class="stats">
         <p>Total Tasks: <span id="totalTasks">0</span></p>
         <p>Total Duration: <span id="totalDuration">0</span> minutes</p>
@@ -69,10 +70,12 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2026 ALU LIFE PLANNER</p>
   </footer>
 
+  <!-- Link JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>
