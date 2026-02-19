@@ -1,0 +1,106 @@
+// ===============================
+// SAMPLE JSON'S
+// ===============================
+ {
+    "id": "rec_1771436283806",
+    "title": "gym",
+    "date": "2026-02-19",
+    "duration": 120,
+    "tag": "Health",
+    "createdAt": "2026-02-18T17:38:03.805Z",
+    "updatedAt": "2026-02-18T17:38:03.805Z"
+  },
+  {
+    "id": "rec_1771436384914",
+    "title": "frontend summative",
+    "date": "2026-02-20",
+    "duration": 300,
+    "tag": "study",
+    "createdAt": "2026-02-18T17:39:44.914Z",
+    "updatedAt": "2026-02-18T17:39:44.914Z"
+  },
+  {
+    "id": "rec_1771446447469",
+    "title": "attend class",
+    "date": "2026-02-19",
+    "duration": 90,
+    "tag": "studying",
+    "createdAt": "2026-02-18T20:27:27.468Z",
+    "updatedAt": "2026-02-18T20:27:27.468Z"
+  }
+]
+  ,
+  {
+    "id": "rec_1771450001001",
+    "title": "read javascript book",
+    "date": "2026-02-21",
+    "duration": 150,
+    "tag": "Study",
+    "createdAt": "2026-02-18T21:00:01.001Z",
+    "updatedAt": "2026-02-18T21:00:01.001Z"
+  },
+  {
+    "id": "rec_1771450102002",
+    "title": "morning run",
+    "date": "2026-02-22",
+    "duration": 60,
+    "tag": "Health",
+    "createdAt": "2026-02-18T21:01:42.002Z",
+    "updatedAt": "2026-02-18T21:01:42.002Z"
+  },
+  {
+    "id": "rec_1771450203003",
+    "title": "work on backend api",
+    "date": "2026-02-23",
+    "duration": 240,
+    "tag": "Project",
+    "createdAt": "2026-02-18T21:03:23.003Z",
+    "updatedAt": "2026-02-18T21:03:23.003Z"
+  },
+  {
+    "id": "rec_1771450304004",
+    "title": "team meeting",
+    "date": "2026-02-21",
+    "duration": 120,
+    "tag": "Work",
+    "createdAt": "2026-02-18T21:05:04.004Z",
+    "updatedAt": "2026-02-18T21:05:04.004Z"
+  },
+  {
+    "id": "rec_1771450405005",
+    "title": "revise algorithms",
+    "date": "2026-02-24",
+    "duration": 180,
+    "tag": "Study",
+    "createdAt": "2026-02-18T21:06:45.005Z",
+    "updatedAt": "2026-02-18T21:06:45.005Z"
+  },
+  {
+    "id": "rec_1771450506006",
+    "title": "family time",
+    "date": "2026-02-22",
+    "duration": 200,
+    "tag": "Personal",
+    "createdAt": "2026-02-18T21:08:26.006Z",
+    "updatedAt": "2026-02-18T21:08:26.006Z"
+  },
+  {
+    "id": "rec_1771450607007",
+    "title": "practice coding challenges",
+    "date": "2026-02-25",
+    "duration": 210,
+    "tag": "Study",
+    "createdAt": "2026-02-18T21:10:07.007Z",
+    "updatedAt": "2026-02-18T21:10:07.007Z"
+  },
+  {
+    "id": "rec_1771450708008",
+    "title": "watch tech tutorial",
+    "date": "2026-02-23",
+    "duration": 95,
+    "tag": "Learning",
+    "createdAt": "2026-02-18T21:11:48.008Z",
+    "updatedAt": "2026-02-18T21:11:48.008Z"
+  }
+]
+
