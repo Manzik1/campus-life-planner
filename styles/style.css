@@ -97,7 +97,7 @@ button {
   cursor: pointer;
 }
 
-/* ✅ FIXED IDS */
+/* FIXED IDS */
 #exportBtn,
 #importBtn {
   background-color: #0066cc;
