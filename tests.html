@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Regex Validation Tests</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #01187c;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .test-section {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        input {
+            padding: 6px;
+            width: 60%;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Regex Validation Tests</h1>
+<p style="color:white;">This page tests all validation rules used in the ALU Life Planner form.</p>
+
+<!-- ================= Title Validation ================= -->
+<div class="test-section">
+    <h3>1. Title Validation</h3>
+    <p>Rule: No spaces at the beginning or end</p>
+    <p>Regex: /^\S(?:.*\S)?$/</p>
+
+    <input type="text" id="titleTest" placeholder="Enter title">
+    <button onclick="testTitle()">Test</button>
+    <div class="result" id="titleResult"></div>
+</div>
+
+<!-- ================= Duration Validation ================= -->
+<div class="test-section">
+    <h3>2. Duration Validation</h3>
+    <p>Rule: Positive integers only (min = 1)</p>
+    <p>Regex: /^[1-9]\d*$/</p>
+
+    <input type="text" id="durationTest" placeholder="Enter duration">
+    <button onclick="testDuration()">Test</button>
+    <div class="result" id="durationResult"></div>
+</div>
+
+<!-- ================= Date Validation ================= -->
+<div class="test-section">
+    <h3>3. Date Validation</h3>
+    <p>Rule: Format must be YYYY-MM-DD (valid month & day range)</p>
+    <p>Regex: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/</p>
+
+    <input type="text" id="dateTest" placeholder="YYYY-MM-DD">
+    <button onclick="testDate()">Test</button>
+    <div class="result" id="dateResult"></div>
+</div>
+
+<!-- ================= Tag Validation ================= -->
+<div class="test-section">
+    <h3>4. Tag Validation</h3>
+    <p>Rule: Letters, spaces, and hyphens only (proper word structure)</p>
+    <p>Regex: /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/</p>
+
+    <input type="text" id="tagTest" placeholder="Enter tag">
+    <button onclick="testTag()">Test</button>
+    <div class="result" id="tagResult"></div>
+</div>
+
+<!-- ================= Duplicate Word Detection ================= -->
+<div class="test-section">
+    <h3>5. Duplicate Word Detection (Advanced)</h3>
+    <p>Rule: Detect repeated words like "study study"</p>
+    <p>Regex: /\b(\w+)\s+\1\b/i</p>
+
+    <input type="text" id="duplicateTest" placeholder="Enter text">
+    <button onclick="testDuplicate()">Test</button>
+    <div class="result" id="duplicateResult"></div>
+</div>
+
+<a href="index.html">← Back to Main App</a>
+
+<script>
+
+    function showResult(elementId, isValid, validText, invalidText) {
+        let element = document.getElementById(elementId);
+
+        if (isValid) {
+            element.textContent = validText;
+            element.className = "result valid";
+        } else {
+            element.textContent = invalidText;
+            element.className = "result invalid";
+        }
+    }
+
+    function testTitle() {
+        let value = document.getElementById("titleTest").value;
+        let regex = /^\S(?:.*\S)?$/;
+        showResult("titleResult", regex.test(value), "Valid Title", "Invalid Title");
+    }
+
+    function testDuration() {
+        let value = document.getElementById("durationTest").value;
+        let regex = /^[1-9]\d*$/;
+        showResult("durationResult", regex.test(value), "Valid Duration", "Invalid Duration");
+    }
+
+    function testDate() {
+        let value = document.getElementById("dateTest").value;
+        let regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+        showResult("dateResult", regex.test(value), "Valid Date", "Invalid Date");
+    }
+
+    function testTag() {
+        let value = document.getElementById("tagTest").value;
+        let regex = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
+        showResult("tagResult", regex.test(value), "Valid Tag", "Invalid Tag");
+    }
+
+    function testDuplicate() {
+        let value = document.getElementById("duplicateTest").value;
+        let regex = /\b(\w+)\s+\1\b/i;
+        showResult("duplicateResult", !regex.test(value), "No Duplicate Word", "Duplicate Word Found");
+    }
+
+</script>
+
+</body>
+</html>
+
