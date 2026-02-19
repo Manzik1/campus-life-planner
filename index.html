@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALU Life Planner</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+  <div id="notification" aria-live="polite"></div>
+
+  <header>
+    <h1>ALU Life Planner</h1>
+    <p class="subtitle">Organize your campus tasks</p>
+  </header>
+
+  <main>
+
+    <!-- ============================= -->
+    <!-- FORM SECTION -->
+    <!-- ============================= -->
+    <section class="form-section">
+      <h2>Add Task</h2>
+
+      <form id="taskForm">
+        <div class="form-group">
+          <label for="title">Task Title</label>
+          <input type="text" id="title" required>
+        </div>
+
+        <div class="form-group">
+          <label for="dueDate">Due Date</label>
+          <input type="date" id="dueDate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration (minutes)</label>
+          <input type="number" id="duration" min="1" step="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tag">Tag</label>
+          <input type="text" id="tag" required>
+        </div>
+
+        <button type="submit" class="primary-btn">Save Task</button>
+      </form>
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- TABLE SECTION -->
+    <!-- ============================= -->
+    <section class="table-section">
+      <h2>Your Tasks</h2>
+
+      <div class="controls">
+
+        <!-- Search -->
+        <input type="text" id="searchInput" placeholder="Regex search tasks...">
+
+        <!-- Sort -->
+        <select id="sortSelect">
+          <option value="">Sort By</option>
+          <option value="date">Date</option>
+          <option value="title">Title (A-Z)</option>
+          <option value="duration">Duration</option>
+        </select>
+
+        <!-- Unit Conversion -->
+        <select id="unitSelect">
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+        </select>
+
+        <!-- Export / Import / Clear -->
+        <div class="buttons">
+          <button id="exportBtn">Export JSON</button>
+          <button id="importBtn">Import JSON</button>
+          <button id="clearAll" class="danger">Clear All Tasks</button>
+        </div>
+
+        <!-- Hidden File Input -->
+        <input type="file" id="fileInput" accept=".json" hidden>
+
+      </div>
+
+      <div class="table-wrapper">
+        <table id="taskTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Due Date</th>
+              <th>Duration</th>
+              <th>Tag</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ============================= -->
+      <!-- STATS DASHBOARD -->
+      <!-- ============================= -->
+      <div class="stats">
+        <p>Total Tasks: <span id="totalTasks">0</span></p>
+        <p>Total Duration: <span id="totalDuration">0</span></p>
+        <p>Top Tag: <span id="topTag">None</span></p>
+        <p>Last 7 Days: <span id="last7">0</span></p>
+      </div>
+
+      <!-- ============================= -->
+      <!-- CAP SYSTEM -->
+      <!-- ============================= -->
+      <div class="cap-section">
+        <input type="number" id="capInput" placeholder="Set duration cap">
+        <p id="capMessage" aria-live="polite"></p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ALU Life Planner</p>
+  </footer>
+
+<script src="scripts/storage.js"></script>
+<script src="scripts/state.js"></script>
+<script src="scripts/ui.js"></script>
+<script src="scripts/validators.js"></script>
+<script src="scripts/search.js"></script>
+</body>
+</html>
+

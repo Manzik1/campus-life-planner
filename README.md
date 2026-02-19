@@ -131,14 +131,14 @@ assets/
 
 7. SUMMARY
 
-1. The ALU Life Planner:
+  a. The ALU Life Planner:
 
-2. Uses modular JavaScript
+  b. Uses modular JavaScript
 
-3. Implements regex validation
+  c. Implements regex validation
 
-4. Stores data persistently
+  d. Stores data persistently
 
-5. Provides search, sorting, statistics, and alerts
+  e. Provides search, sorting, statistics, and alerts
 
-6. Follows accessibility best practices
+  f. Follows accessibility best practices

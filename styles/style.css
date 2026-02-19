@@ -1,0 +1,252 @@
+/* ===== GENERAL STYLING ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: skyblue;
+}
+
+/* ===== HEADER ===== */
+header {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ===== MAIN CONTAINER ===== */
+main {
+  max-width: 800px;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* ===== SECTION TITLES ===== */
+h2 {
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+/* ===== FORM SECTION ===== */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.primary-btn {
+  padding: 10px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background-color: #0055aa;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* General buttons */
+button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ✅ FIXED IDS */
+#exportBtn,
+#importBtn {
+  background-color: #0066cc;
+  color: white;
+}
+
+button.danger {
+  background-color: #cc0000;
+  color: white;
+}
+
+button.edit {
+  background-color: green;
+  color: white;
+}
+
+button.delete {
+  background-color: red;
+  color: white;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: #e6e6e6;
+}
+
+/* ===== STATS ===== */
+.stats {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #003366;
+  color: white;
+  border-radius: 5px;
+}
+
+/* ===== NOTIFICATION ===== */
+#notification {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: green;
+  color: white;
+  display: none;
+}
+
+#notification.show {
+  display: block;
+}
+
+#notification.error {
+  background-color: red;
+}
+
+/* Dropdown styling (Sort + Units) */
+select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  background-color: white;
+}
+
+/* Cap section styling */
+.cap-section {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #fff8e6;
+  border: 1px solid #f0c36d;
+  border-radius: 4px;
+}
+
+#capInput {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Regex highlight */
+mark {
+  background-color: yellow;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Improve stats spacing */
+.stats p {
+  margin: 5px 0;
+}
+
+/* Hover effect for all buttons */
+button:hover {
+  opacity: 0.85;
+}
+
+/* Accessibility focus states */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #003366;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+button,
+input,
+select {
+  transition: 0.2s ease;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  main {
+    padding: 10px;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+  }
+}
+
