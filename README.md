@@ -261,7 +261,7 @@ No editor or OS junk files tracked
 
 Demo Video Link:
 
-[  ]
+[https://youtu.be/5wpMOxQ1d1c  ]
 
 The demo covers:
 
